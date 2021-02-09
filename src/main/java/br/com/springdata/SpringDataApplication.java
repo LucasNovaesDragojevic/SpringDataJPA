@@ -1,19 +1,22 @@
 package br.com.springdata;
 
+import java.util.Scanner;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.springdata.orm.Cargo;
-import br.com.springdata.repository.CargoRepository;
+import br.com.springdata.service.CrudCargoService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 
-	private final CargoRepository cargoRepository;
+	private Boolean system = true;
 	
-	public SpringDataApplication(CargoRepository cargoRepository) {
-		this.cargoRepository = cargoRepository;
+	private CrudCargoService cargoService;
+	
+	public SpringDataApplication(CrudCargoService cargoService) {
+		this.cargoService = cargoService;
 	}
 	
 	public static void main(String[] args) {
@@ -22,9 +25,18 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo();
-		cargo.setDescricao("DESENVOLVEDOR JAVA");
-		cargoRepository.save(cargo);
+		Scanner scanner = new Scanner(System.in);
+		while (system) {
+			System.out.println("Qual ação você quer executar");
+			System.out.println("0 - Sair");
+			System.out.println("1 - Cargo");		
+			Integer action = scanner.nextInt();
+			if (action == 1) {
+				cargoService.inicial(scanner);
+			} else {
+				system = false;
+			}
+		}
 	}
 
 }
