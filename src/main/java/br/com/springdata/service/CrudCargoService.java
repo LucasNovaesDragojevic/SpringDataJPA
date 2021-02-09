@@ -20,6 +20,7 @@ public class CrudCargoService
 	public void inicial(Scanner scanner) {
 		system = true;
 		while (system) {
+			System.out.println();
 			System.out.println("Qual ação de cargo deseja executar?");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Salvar");
@@ -48,6 +49,7 @@ public class CrudCargoService
 	}
 
 	private void salvar(Scanner scanner) {
+		System.out.println();
 		System.out.println("Descrição do cargo.");
 		String decricao = scanner.next();
 		Cargo cargo = new Cargo();
@@ -57,6 +59,7 @@ public class CrudCargoService
 	}
 	
 	private void atualizar(Scanner scanner) {
+		System.out.println();
 		System.out.println("Id");
 		Integer id = scanner.nextInt();
 		System.out.println("Descrição do Cargo.");
@@ -74,6 +77,7 @@ public class CrudCargoService
 	}
 	
 	private void deletar(Scanner scanner) {
+		System.out.println();
 		System.out.println("Id");
 		Integer id = scanner.nextInt();
 		cargoRepository.deleteById(id);

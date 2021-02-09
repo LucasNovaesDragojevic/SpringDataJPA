@@ -27,8 +27,7 @@ public class CrudFuncionarioService {
 	private final UnidadeTrabalhoRepository unidadeTrabalhoRepository;
 	
 	
-	public CrudFuncionarioService(FuncionarioRepository funcionarioRepository, 
-			CargoRepository cargoRepository, UnidadeTrabalhoRepository unidadeTrabalhoRepository) {
+	public CrudFuncionarioService(FuncionarioRepository funcionarioRepository, CargoRepository cargoRepository, UnidadeTrabalhoRepository unidadeTrabalhoRepository) {
 		this.cargoRepository = cargoRepository;
 		this.funcionarioRepository = funcionarioRepository;
 		this.unidadeTrabalhoRepository = unidadeTrabalhoRepository;
@@ -36,35 +35,32 @@ public class CrudFuncionarioService {
 	
 	public void inicial(Scanner scanner) {
 		while(system) {
-			System.out.println("Qual acao de cargo deseja executar");
+			System.out.println();
+			System.out.println("Qual acao de funcionário deseja executar");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
 			System.out.println("3 - Visualizar");
 			System.out.println("4 - Deletar");
-			
-			int action = scanner.nextInt();
-			
+			Integer action = scanner.nextInt();
 			switch (action) {
-			case 1:
-				salvar(scanner);
-				break;
-			case 2:
-				atualizar(scanner);
-				break;
-			case 3:
-				visualizar();
-				break;
-			case 4:
-				deletar(scanner);
-				break;
-			default:
-				system = false;
-				break;
-			}
-			
+				case 1:
+					salvar(scanner);
+					break;
+				case 2:
+					atualizar(scanner);
+					break;
+				case 3:
+					visualizar();
+					break;
+				case 4:
+					deletar(scanner);
+					break;
+				default:
+					system = false;
+					break;
+			}	
 		}
-		
 	}
 	
 	private void salvar(Scanner scanner) {
@@ -151,7 +147,7 @@ public class CrudFuncionarioService {
 	
 	private void visualizar() {
 		Iterable<Funcionario> funcionarios = funcionarioRepository.findAll();
-		funcionarios.forEach(funcionario -> System.out.println(funcionario));
+		funcionarios.forEach(System.out::println);
 	}
 	
 	private void deletar(Scanner scanner) {
